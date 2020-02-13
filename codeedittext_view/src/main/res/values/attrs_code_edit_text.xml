@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="CodeEditText">
+        <attr name="maxInput" format="integer"/>
+        <attr name="color" format="color"/>
+        <attr name="textColor" format="color"/>
+    </declare-styleable>
+</resources>
