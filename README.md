@@ -14,9 +14,9 @@ EditText for code input for example to enter sms code inside box
 
 Module
 
-    	dependencies {
-	        implementation 'com.github.nikitaknyzevskiy:Range-seek-bar:1.0'
-	}
+    		dependencies {
+        	        implementation 'com.github.nikitaknyzevskiy:CodeEditText:v1.0.0'
+        	}
 
 
 ## Uses
