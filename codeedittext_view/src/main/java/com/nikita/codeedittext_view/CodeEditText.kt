@@ -96,6 +96,7 @@ class CodeEditText : FrameLayout {
             background = null
             isCursorVisible = false
             filters = arrayOf<InputFilter>(LengthFilter(maxInput))
+            inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
         }
         boxesLayout = LinearLayout(context).apply {
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
