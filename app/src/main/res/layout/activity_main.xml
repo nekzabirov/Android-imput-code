@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <com.nikita.codeedittext_view.CodeEditText
+        android:id="@+id/codeedittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:color="@color/colorPrimary"
