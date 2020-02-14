@@ -15,7 +15,7 @@ EditText for code input for example to enter sms code inside box
 Module
 
     		dependencies {
-        	        implementation 'com.github.nikitaknyzevskiy:CodeEditText:v1.0.0'
+        	        implementation 'com.github.nikitaknyzevskiy:CodeEditText:v1.1.0'
         	}
 
 
