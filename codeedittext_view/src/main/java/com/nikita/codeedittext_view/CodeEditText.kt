@@ -49,6 +49,10 @@ class CodeEditText : FrameLayout {
         set(value) {
             field = value
             //postInvalidate()
+            if (boxesLayout != null) {
+                createBoxex()
+                editText?.text = editText?.text
+            }
         }
 
     @ColorInt
@@ -56,6 +60,10 @@ class CodeEditText : FrameLayout {
         set(value) {
             field = value
             //postInvalidate()
+            if (boxesLayout != null) {
+                createBoxex()
+                editText?.text = editText?.text
+            }
         }
 
     var onListener: (success: Boolean) -> Unit = {
@@ -70,6 +78,7 @@ class CodeEditText : FrameLayout {
         get() = editText?.text.toString()
 
     private var editText: EditText? = null
+    private var boxesLayout: LinearLayout? = null
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
         // Load attributes
@@ -94,14 +103,12 @@ class CodeEditText : FrameLayout {
             isCursorVisible = false
             filters = arrayOf<InputFilter>(LengthFilter(maxInput))
         }
-        val boxesLayout = LinearLayout(context).apply {
+        boxesLayout = LinearLayout(context).apply {
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             orientation = LinearLayout.HORIZONTAL
         }
 
-        repeat(maxInput) {
-            boxesLayout.addView(createNumBox())
-        }
+        createBoxex()
 
         editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -115,7 +122,7 @@ class CodeEditText : FrameLayout {
                 onListener.invoke(s.length == maxInput)
 
                 var i = 0
-                for (view in boxesLayout.children) {
+                for (view in boxesLayout!!.children) {
                     val txtBox = view as TextView
                     if (i > s.lastIndex) {
                         txtBox.text = ""
@@ -131,13 +138,20 @@ class CodeEditText : FrameLayout {
         addView(editText)
     }
 
+    private fun createBoxex() {
+        boxesLayout?.removeAllViews()
+        repeat(maxInput) {
+            boxesLayout?.addView(createNumBox())
+        }
+    }
+
     private fun createNumBox(): TextView {
         return TextView(context).apply {
             textSize = 23f
             //setPadding(11.dp, 11.dp, 11.dp, 11.dp)
             gravity = Gravity.CENTER
             setTextColor(this@CodeEditText.textColor)
-            background = textBg
+            background = textBg()
             layoutParams = LayoutParams(43.dp, 47.dp).apply {
                 marginEnd = 5.dp
                 marginStart = 5.dp
@@ -146,8 +160,8 @@ class CodeEditText : FrameLayout {
         }
     }
 
-    private val textBg: Drawable by lazy {
-        GradientDrawable().apply {
+    private fun textBg(): Drawable {
+        return GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
             setStroke(2.dp, this@CodeEditText.color)
             cornerRadius = 10.dp.toFloat()

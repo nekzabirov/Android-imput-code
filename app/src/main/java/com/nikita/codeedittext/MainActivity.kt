@@ -1,5 +1,6 @@
 package com.nikita.codeedittext
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,6 +18,10 @@ class MainActivity : AppCompatActivity() {
 
         //Set code
         codeedittext.text = "123456"
+
+        codeedittext.color = Color.BLACK
+
+        codeedittext.textColor = Color.BLACK
 
         //Get code
         val code = codeedittext.text
