@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable
 import android.text.Editable
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.Gravity
@@ -141,6 +142,7 @@ class CodeEditText : FrameLayout {
                 marginEnd = 5.dp
                 marginStart = 5.dp
             }
+            inputType = InputType.TYPE_NUMBER_VARIATION_PASSWORD
         }
     }
 
