@@ -49,10 +49,7 @@ class CodeEditText : FrameLayout {
         set(value) {
             field = value
             //postInvalidate()
-            if (boxesLayout != null) {
-                createBoxex()
-                editText?.text = editText?.text
-            }
+            reChangeBoxesColors()
         }
 
     @ColorInt
@@ -60,10 +57,7 @@ class CodeEditText : FrameLayout {
         set(value) {
             field = value
             //postInvalidate()
-            if (boxesLayout != null) {
-                createBoxex()
-                editText?.text = editText?.text
-            }
+            reChangeBoxesColors()
         }
 
     var onListener: (success: Boolean) -> Unit = {
@@ -138,6 +132,16 @@ class CodeEditText : FrameLayout {
         addView(editText)
     }
 
+    private fun reChangeBoxesColors() {
+        if (boxesLayout == null)
+            return
+        for (view in boxesLayout!!.children) {
+            val txtBox = view as TextView
+            txtBox.setTextColor(textColor)
+            txtBox.background = textBg()
+        }
+    }
+
     private fun createBoxex() {
         boxesLayout?.removeAllViews()
         repeat(maxInput) {
@@ -156,7 +160,6 @@ class CodeEditText : FrameLayout {
                 marginEnd = 5.dp
                 marginStart = 5.dp
             }
-            inputType = InputType.TYPE_NUMBER_VARIATION_PASSWORD
         }
     }
 
